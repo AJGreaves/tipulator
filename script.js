@@ -35,7 +35,7 @@ function clearErrorMessages() {
 
 
 /**
- * Take the value entered by the user and check that it is a valid number.
+ * Take the value entered by the user and check if it is valid.
  * Add feedback for the user is if the number is not greater than one.
  * Return true if the input from the user is valid
  */
@@ -43,6 +43,7 @@ function checkBillTotal(total) {
     if (total < 1) {
         let message = document.getElementById("billTotalMsg");
         message.innerHTML = "Please enter a number greater than 0";
+        message.style.color = "red";
         return false;
     } else {
         return true;
@@ -61,6 +62,7 @@ function checkServiceRating(level) {
     } else {
         let message = document.getElementById("serviceLevelMsg");
         message.innerHTML = "Please enter either 'poor', 'good' or 'excellent'";
+        message.style.color = "red";
     }
 }
 
@@ -73,6 +75,7 @@ function checkNumberPaying(num) {
     if (num < 1) {
         let message = document.getElementById("numPayingMsg");
         message.innerHTML = "Please enter a number greater than 0";
+        message.style.color = "red";
         return false
     } else {
         return num;
