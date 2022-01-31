@@ -25,7 +25,7 @@ function handleForm(form) {
 }
 
 /**
- * Clears all error messages each time the submit button is clicked
+ * Clear all form error messages
  */
 function clearErrorMessages() {
     document.getElementById("billTotalMsg").innerHTML = "";
@@ -78,7 +78,7 @@ function checkNumberPaying(num) {
         message.style.color = "red";
         return false
     } else {
-        return num;
+        return true;
     }
 }
 
