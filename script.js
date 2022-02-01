@@ -11,7 +11,7 @@ function handleForm(form) {
 
         // Calculate tip using billTotal provided and display to user
         let totalWithTip = (form.billTotal.value / 100) * tipPercentage;
-        document.getElementById("totalWithTip").innerHTML = totalWithTip;
+        document.getElementById("totalWithTip").innerHTML = totalWithTip.toFixed(2);
 
         // Calculate cost per person and display to user
         let perPerson = totalWithTip / form.numPaying.value;
