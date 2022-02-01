@@ -57,7 +57,7 @@ function checkBillTotal(total) {
  * If it does not, provide feedback to the user so they can correct their input
  */
 function checkServiceRating(level) {
-    if (level == "poor" || level === "good" || level === "excellent") {
+    if (level === "poor" || level === "good" || level === "excellent") {
         return true;
     } else {
         let message = document.getElementById("serviceLevelMsg");
