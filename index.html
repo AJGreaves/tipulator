@@ -13,23 +13,21 @@
     <div id="tipulator-wrapper">
         <h1>Tipulator</h1>
         <p>Calculate how much to pay for your meal</p>
-        <form>
+        <form onsubmit="handleForm(event)">
             <div>
                 Initial total cost before tip:<br>
-                <input type="number" id="billTotal" />
-                <div id="billTotalMsg"></div>
+                <input type="number" min="1" name="billTotal" required>
             </div>
             <div>
                 Rate service: poor, good, excellent<br>
-                <input type="text" id="serviceLevel" />
-                <div id="serviceLevelMsg"></div>
+                <input type="text" name="serviceRating" required>
+                <div id="serviceRatingFeedback"></div>
             </div>
             <div>
                 Number of people splitting the bill:<br>
-                <input type="number" id="numPaying" />
-                <div id="numPayingMsg"></div>
+                <input type="number" min="1" name="numPaying" required>
             </div>
-            <button type="button" id="submitButton" onclick="handleForm(form)">Submit</button>
+            <button type="submit" id="submitButton">Submit</button>
         </form>
         <hr>
         <div id="results">

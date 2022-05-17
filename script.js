@@ -1,86 +1,46 @@
-function handleForm(form) {
-    clearErrorMessages();
+function handleForm(event) {
+    event.preventDefault();
 
-    let totalBillChecked = checkBillTotal(form.billTotal.value);
-    let serviceRatingChecked = checkServiceRating(form.serviceLevel.value);
-    let numPayingChecked = checkNumberPaying(form.numPaying.value);
+    // clear feedback message
+    let feedback = document.getElementById("serviceRatingFeedback");
+    feedback.innerHTML = "";
+
+    let form = event.target;
+    let serviceRating = form.serviceRating.value;
+    let billTotal = form.billTotal.value;
+
+    let serviceRatingValidated = validateServiceRating(serviceRating);
 
     // If all values in form are valid
-    if (totalBillChecked && serviceRatingChecked && numPayingChecked) {
-        let tipPercentage = getTipPercentage(form.serviceLevel.value);
+    if (serviceRatingValidated) {
+        let tipPercentage = getTipPercentage(serviceRating);
 
         // Calculate tip using billTotal provided and display to user
-        let totalWithTip = (form.billTotal.value / 100) * tipPercentage;
+        let totalWithTip = (billTotal / 100) * tipPercentage;
         document.getElementById("totalWithTip").innerHTML = totalWithTip.toFixed(2);
 
         // Calculate cost per person and display to user
         let perPerson = totalWithTip / form.numPaying.value;
         document.getElementById("perPerson").innerHTML = perPerson.toFixed(2); // rounds to 2 decimal points
-        /*
-        I wasn't planning on teaching toFixed()
-        so this might be best to leave it out?
-        Or something for bonus points?
-        */
     }
 }
-
-/**
- * Clear all form error messages
- */
-function clearErrorMessages() {
-    document.getElementById("billTotalMsg").innerHTML = "";
-    document.getElementById("serviceLevelMsg").innerHTML = "";
-    document.getElementById("numPayingMsg").innerHTML = "";
-}
-
-
-/**
- * Take the value entered by the user and check if it is valid.
- * Add feedback for the user is if the number is not greater than one.
- * Return true if the input from the user is valid
- */
-function checkBillTotal(total) {
-    if (total < 1) {
-        let message = document.getElementById("billTotalMsg");
-        message.innerHTML = "Please enter a number greater than 0";
-        message.style.color = "red";
-        return false;
-    } else {
-        return true;
-    }
-}
-
 
 /**
  * Check that the provided value from the user matches one of the expected values
  * If it does return true
  * If it does not, provide feedback to the user so they can correct their input
  */
-function checkServiceRating(level) {
+function validateServiceRating(level) {
     if (level === "poor" || level === "good" || level === "excellent") {
         return true;
     } else {
-        let message = document.getElementById("serviceLevelMsg");
+        let message = document.getElementById("serviceRatingFeedback");
         message.innerHTML = "Please enter either 'poor', 'good' or 'excellent'";
         message.style.color = "red";
+        return false;
     }
 }
 
-/**
- * Check that the number of people paying provided by the user is greater than 0
- * If it is, return true
- * If it is not, provide feedback to the user
- */
-function checkNumberPaying(num) {
-    if (num < 1) {
-        let message = document.getElementById("numPayingMsg");
-        message.innerHTML = "Please enter a number greater than 0";
-        message.style.color = "red";
-        return false
-    } else {
-        return true;
-    }
-}
 
 /**
  * Use the rating of service to determine the overall tip percentage
