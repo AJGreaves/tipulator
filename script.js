@@ -55,3 +55,27 @@ function getTipPercentage(level) {
         return 100;
     }
 }
+
+function headingOrange() {
+    let heading = document.getElementById("heading");
+    heading.style = "color: darkorange;";
+}
+
+function headingGrey() {
+    let heading = document.getElementById("heading");
+    heading.style = "color: darkslategrey;";
+}
+
+function closeTipulator() {
+    document.write("<h1>Thank you for using the Tipulator!<h1>")
+}
+
+function moveRight() {
+    let tipulator = document.getElementById("tipulator-wrapper");
+    tipulator.style = "position: relative; left: 500px;";
+}
+
+function moveLeft() {
+    let tipulator = document.getElementById("tipulator-wrapper");
+    tipulator.style = "position: relative; left: 0px;";
+}

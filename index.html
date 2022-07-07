@@ -11,7 +11,7 @@
 
 <body>
     <div id="tipulator-wrapper">
-        <h1>Tipulator</h1>
+        <h1 onmouseenter="headingOrange()" onmouseleave="headingGrey()" id="heading">Tipulator</h1>
         <p>Calculate how much to pay for your meal</p>
         <form onsubmit="handleForm(event)">
             <div>
@@ -38,6 +38,12 @@
             <div id="perPerson"></div>
         </div>
     </div>
+    <div id="controls">
+        <button id="rightButton" onclick="moveRight()">Move right</button>
+        <button id="leftButton" onclick="moveLeft()">Move left</button>
+        <button id="closeButton" onclick="closeTipulator()">Close</button>
+    </div>
+    
 
     <script src="script.js"></script>
 </body>
